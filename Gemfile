@@ -6,6 +6,9 @@ gem 'rails', '4.0.0'
 # Use mysql2 as the database for Active Record
 gem 'mysql2'
 
+# Use haml
+gem 'haml'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
