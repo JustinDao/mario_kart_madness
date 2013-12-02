@@ -3,15 +3,9 @@
   %thead
     %tr
       %th Name
-      %th
-      %th
   %tbody
     - @items.each do |item|
       %tr
-        %td= item[get_field_index(Item, "iname")]
-        %td= link_to 'Show', item_path(item[0])
-        %td= link_to 'Edit', edit_item_path(item[0])
+        %td= link_to item[get_field_index(Item, "iname")], item_path(item[0])
 %br
-  = link_to 'New Item', new_item_path
-  |
   = link_to "Back", root_path
