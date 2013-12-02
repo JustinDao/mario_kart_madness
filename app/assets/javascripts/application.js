@@ -12,5 +12,41 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  $("#query").bind("keypress", function(){
+    $(".search-results").empty();
+    var value = $(this).val();
+    if (value == ""){
+      return;
+    }
+    $.ajax({
+      url: '/search/'+value,
+      dataType: 'json',
+      type: 'GET',
+      success: function(data) {
+        $.each(data, function(){
+          $('.search-results').append($("<a/>", {
+            href: data[0][data[0].length-1],
+            text: "Hello Word"
+          }));
+          $('.search-results').append($("<br/>", {           
+          }));
+        });     
+      }
+    });
+  });
+});
+
+jQuery.ajaxSetup({
+  beforeSend: function() {
+    $('#loading').fadeIn();
+
+  },
+  complete: function(){
+    $('#loading').hide();
+  },
+  success: function() {}
+});

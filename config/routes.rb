@@ -17,6 +17,9 @@ MarioKartMadness::Application.routes.draw do
 
   resources :items, :only => [:index, :show]
 
+  get '/search', :to => "search#search", :as => "search"
+
+  get '/search/:query', :to => "search#find"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
