@@ -11,13 +11,12 @@
 %br
 
 - if !@games.to_a.empty?
-  %h2 
-    Games
-  - @games.each do |game|
-    = link_to game[get_field_index(Game, "gname")], game_path(game[0])
-    %br
+  %h3 Games
+  %ul        
+    - @games.each do |game|
+      %li
+        = link_to game[get_field_index(Game, "gname")], game_path(game[0])
 
-%br
 = link_to 'Edit', edit_character_path(@character)
 |
 = link_to 'Back', characters_path
