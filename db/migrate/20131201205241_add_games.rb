@@ -4,8 +4,8 @@ class AddGames < ActiveRecord::Migration
       t.integer :gid
       t.string :gname
       t.datetime :greleasedate
-
-      t.timestamps
+      t.text :ginfo
+      t.string :gpictureurl
     end
   end
 end

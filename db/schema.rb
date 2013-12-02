@@ -11,7 +11,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131201205241) do
+ActiveRecord::Schema.define(version: 20131201223225) do
+
+  create_table "character_karts", force: true do |t|
+    t.integer "cid"
+    t.string  "kid"
+  end
+
+  create_table "characters", force: true do |t|
+    t.integer "cid"
+    t.string  "cname"
+    t.string  "cinfo"
+    t.string  "cpictureurl"
+  end
+
+  create_table "characters_items", force: true do |t|
+    t.integer "cid"
+    t.string  "iid"
+  end
+
+  create_table "console_games", force: true do |t|
+    t.integer "gcid"
+    t.string  "gid"
+  end
+
+  create_table "consoles", force: true do |t|
+    t.integer "gcid"
+    t.string  "gcname"
+    t.text    "gcinfo"
+    t.string  "gcpictureurl"
+  end
+
+  create_table "game_characters", force: true do |t|
+    t.integer "gid"
+    t.string  "cid"
+  end
+
+  create_table "game_items", force: true do |t|
+    t.integer "gid"
+    t.string  "iid"
+  end
+
+  create_table "game_karts", force: true do |t|
+    t.integer "gcid"
+    t.string  "tid"
+  end
+
+  create_table "game_tracks", force: true do |t|
+    t.string "gid"
+  end
 
   create_table "games", force: true do |t|
     t.integer  "gid"
@@ -19,6 +67,34 @@ ActiveRecord::Schema.define(version: 20131201205241) do
     t.datetime "greleasedate"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "ginfo"
+    t.string   "gpictureurl"
+  end
+
+  create_table "items", force: true do |t|
+    t.integer "iid"
+    t.string  "iname"
+    t.string  "iinfo"
+    t.string  "ipictureurl"
+  end
+
+  create_table "karts", force: true do |t|
+    t.integer "kid"
+    t.string  "kname"
+    t.string  "kinfo"
+    t.string  "kpictureurl"
+  end
+
+  create_table "tracks", force: true do |t|
+    t.integer "tid"
+    t.string  "tname"
+    t.string  "tinfo"
+    t.string  "gcpictureurl"
+  end
+
+  create_table "weight", force: true do |t|
+    t.integer "wid"
+    t.string  "wname"
   end
 
 end
