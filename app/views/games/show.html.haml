@@ -1,5 +1,12 @@
 %p#notice= notice
+.picture
+  = image_tag @game[get_field_index(Game, "gpictureurl")]
+%br
 = @game[get_field_index(Game, "gname")]
+%br
+= @game[get_field_index(Game, "greleasedate")]
+%br
+= @game[get_field_index(Game, "ginfo")]
 %br
 = link_to 'Edit', edit_game_path(@game)
 |
