@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20131201223225) do
     t.integer "tid"
     t.string  "tname"
     t.string  "tinfo"
-    t.string  "gcpictureurl"
+    t.string  "tpictureurl"
   end
 
   create_table "weight", force: true do |t|

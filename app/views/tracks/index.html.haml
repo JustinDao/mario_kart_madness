@@ -1,0 +1,17 @@
+%h1 Listing tracks
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+  %tbody
+    - @tracks.each do |track|
+      %tr
+        %td= track[get_field_index(Track, "tname")]
+        %td= link_to 'Show', track_path(track[0])
+        %td= link_to 'Edit', edit_track_path(track[0])
+%br
+  = link_to 'New Track', new_track_path
+  |
+  = link_to "Back", root_path

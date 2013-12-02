@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%h1
+  = @item[get_field_index(Item, "iname")]
+
+- if @item[get_field_index(Item, "ipictureurl")] != nil
+  .picture
+    = image_tag @item[get_field_index(Item, "ipictureurl")]
+%br
+= @item[get_field_index(Item, "iinfo")]
+%br
+
+- if !@games.to_a.empty?
+  %h3 Games
+  %ul        
+    - @games.each do |game|
+      %li
+        = link_to game[get_field_index(Game, "gname")], game_path(game[0])
+
+= link_to 'Edit', edit_item_path(@item)
+|
+= link_to 'Back', items_path

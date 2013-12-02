@@ -19,7 +19,7 @@ class AddTables < ActiveRecord::Migration
       t.integer :tid
       t.string :tname
       t.string :tinfo
-      t.string :gcpictureurl
+      t.string :tpictureurl
     end
 
     create_table :karts do |t|

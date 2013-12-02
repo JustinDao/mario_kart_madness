@@ -1,0 +1,22 @@
+%p#notice= notice
+
+%h1
+  = @track[get_field_index(Track, "tname")]
+
+- if @track[get_field_index(Track, "tpictureurl")] != nil
+  .picture
+    = image_tag @track[get_field_index(Track, "tpictureurl")]
+%br
+= @track[get_field_index(Track, "tinfo")]
+%br
+
+- if !@games.to_a.empty?
+  %h3 Games
+  %ul        
+    - @games.each do |game|
+      %li
+        = link_to game[get_field_index(Game, "gname")], game_path(game[0])
+
+= link_to 'Edit', edit_track_path(@track)
+|
+= link_to 'Back', tracks_path
