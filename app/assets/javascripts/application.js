@@ -16,7 +16,7 @@
 //= require_tree .
 
 $(document).ready(function() {
-  $("#query").bind("keypress", function(){
+  $("#query").bind("keyup", function(){
     $(".search-results").empty();
     var value = $(this).val();
     if (value == ""){
@@ -29,8 +29,8 @@ $(document).ready(function() {
       success: function(data) {
         $.each(data, function(){
           $('.search-results').append($("<a/>", {
-            href: data[0][data[0].length-1],
-            text: "Hello Word"
+            href: this[1],
+            text: this[0]
           }));
           $('.search-results').append($("<br/>", {           
           }));

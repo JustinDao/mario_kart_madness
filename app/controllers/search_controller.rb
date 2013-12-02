@@ -6,13 +6,15 @@ class SearchController < ApplicationController
   def find
     query = params[:query]
 
+    results = []
+
     tracks = ActiveRecord::Base.connection.execute("
       SELECT * 
       FROM `tracks` 
       WHERE tname LIKE '#{query}%'").to_a
 
     tracks.each do |track|
-      track.push(track_path(track[0]))
+      results.push([track[get_field_index(Track, "tname")],track_path(track[0])])
     end
 
     games = ActiveRecord::Base.connection.execute("
@@ -21,7 +23,7 @@ class SearchController < ApplicationController
       WHERE gname LIKE '#{query}%'").to_a
 
     games.each do |game|
-      game.push(game_path(game[0]))
+      results.push([game[get_field_index(Game, "gname")],game_path(game[0])])
     end
 
     consoles = ActiveRecord::Base.connection.execute("
@@ -30,7 +32,7 @@ class SearchController < ApplicationController
       WHERE gcname LIKE '#{query}%'").to_a
 
     consoles.each do |console|
-      console.push(console_path(console[0]))
+      results.push([console[get_field_index(Console, "gcname")],console_path(console[0])])
     end
 
     items = ActiveRecord::Base.connection.execute("
@@ -39,7 +41,7 @@ class SearchController < ApplicationController
       WHERE iname LIKE '#{query}%'").to_a
 
     items.each do |item|
-      item.push(item_path(item[0]))
+      results.push([item[get_field_index(Item, "iname")],item_path(item[0])])
     end
 
     characters = ActiveRecord::Base.connection.execute("
@@ -48,10 +50,8 @@ class SearchController < ApplicationController
       WHERE cname LIKE '#{query}%'").to_a
 
     characters.each do |character|
-      character.push(character_path(character[0]))
+      results.push([character[get_field_index(Character, "cname")],character_path(character[0])])
     end
-
-    results = tracks + games + consoles + items + characters
 
     respond_to do |format|
       format.json {render json: results}
