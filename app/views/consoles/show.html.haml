@@ -1,0 +1,23 @@
+%p#notice= notice
+
+%h1
+  = @console[get_field_index(Console, "gcname")]
+
+- if @console[get_field_index(Console, "gcpictureurl")] != nil
+  .picture
+    = image_tag @console[get_field_index(Console, "gcpictureurl")]
+%br
+= @console[get_field_index(Console, "gcinfo")]
+%br
+
+- if !@games.to_a.empty?
+  %h2 
+    Games
+  - @games.each do |game|
+    = link_to game[get_field_index(Game, "gname")], game_path(game[0])
+    %br
+
+%br
+= link_to 'Edit', edit_console_path(@console)
+|
+= link_to 'Back', consoles_path

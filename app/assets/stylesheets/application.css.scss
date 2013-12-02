@@ -14,14 +14,17 @@
 
 .header
 {
-  h1
+  
+  a
   {
-    a, a:active, a:visited
+    text-decoration: none;
+    color: #000;
+    img
     {
-      text-decoration: none;
-      color: #000;
+      max-width: 500px;
     }
   }
+  
 }
 
 .picture

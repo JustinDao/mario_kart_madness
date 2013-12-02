@@ -46,7 +46,7 @@ class CharactersController < ApplicationController
     respond_to do |format|
       if @character.valid?
         ActiveRecord::Base.connection.execute("
-          INSERT INTO characters (`gname`, `greleasedate`, `ginfo`, `gpictureurl`) 
+          INSERT INTO characters (`cname`, `cinfo`, `cpictureurl`) 
           VALUES ('#{null_or_not(params[:character][:cname])}', 
             '#{null_or_not(params[:character][:cinfo])}',
             '#{null_or_not(params[:character][:cpictureurl])}');")

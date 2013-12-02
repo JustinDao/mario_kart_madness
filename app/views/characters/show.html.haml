@@ -10,11 +10,11 @@
 = @character[get_field_index(Character, "cinfo")]
 %br
 
-- if !@characters.to_a.empty?
+- if !@games.to_a.empty?
   %h2 
-    Characters
-  - @characters.each do |character|
-    = character[get_field_index(Character, "cname")]
+    Games
+  - @games.each do |game|
+    = link_to game[get_field_index(Game, "gname")], game_path(game[0])
     %br
 
 %br
