@@ -55,7 +55,7 @@ class AddTables < ActiveRecord::Migration
 
     create_table :game_tracks do |t|
       t.integer :gid
-      t.integer :gid
+      t.integer :tid
     end
 
     create_table :game_karts do |t|

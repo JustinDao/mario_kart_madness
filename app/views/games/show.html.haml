@@ -1,6 +1,7 @@
 %p#notice= notice
-.picture
-  = image_tag @game[get_field_index(Game, "gpictureurl")]
+- if @game[get_field_index(Game, "gpictureurl")] != nil
+  .picture
+    = image_tag @game[get_field_index(Game, "gpictureurl")]
 %br
 = @game[get_field_index(Game, "gname")]
 %br

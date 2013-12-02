@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20131201223225) do
 
   create_table "character_karts", force: true do |t|
     t.integer "cid"
-    t.string  "kid"
+    t.integer "kid"
   end
 
   create_table "characters", force: true do |t|
@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(version: 20131201223225) do
 
   create_table "characters_items", force: true do |t|
     t.integer "cid"
-    t.string  "iid"
+    t.integer "iid"
   end
 
   create_table "console_games", force: true do |t|
     t.integer "gcid"
-    t.string  "gid"
+    t.integer "gid"
   end
 
   create_table "consoles", force: true do |t|
@@ -44,29 +44,30 @@ ActiveRecord::Schema.define(version: 20131201223225) do
 
   create_table "game_characters", force: true do |t|
     t.integer "gid"
-    t.string  "cid"
+    t.integer "cid"
+    t.integer "wid"
   end
 
   create_table "game_items", force: true do |t|
     t.integer "gid"
-    t.string  "iid"
+    t.integer "iid"
   end
 
   create_table "game_karts", force: true do |t|
     t.integer "gcid"
-    t.string  "tid"
+    t.integer "tid"
+    t.integer "wid"
   end
 
   create_table "game_tracks", force: true do |t|
-    t.string "gid"
+    t.integer "gid"
+    t.integer "tid"
   end
 
   create_table "games", force: true do |t|
     t.integer  "gid"
     t.string   "gname"
     t.datetime "greleasedate"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.text     "ginfo"
     t.string   "gpictureurl"
   end

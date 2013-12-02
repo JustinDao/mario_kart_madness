@@ -10,7 +10,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    @game = ActiveRecord::Base.connection.execute("SELECT * FROM games WHERE id = #{params[:id]} LIMIT 1").first
+    @game = ActiveRecord::Base.connection.execute("SELECT * FROM games WHERE gid = #{params[:id]} LIMIT 1").first
 
     respond_to do |format|
       format.html
