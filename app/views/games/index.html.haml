@@ -1,0 +1,15 @@
+%h1 Listing games
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+  %tbody
+    - @games.each do |game|
+      %tr
+        %td= game[get_field_index(Game, "gname")]
+        %td= link_to 'Show', game_path(game[0])
+        %td= link_to 'Edit', edit_game_path(game[0])
+%br
+  = link_to 'New Game', new_game_path

@@ -11,3 +11,15 @@
  *= require_self
  *= require_tree .
  */
+
+.header
+{
+  h1
+  {
+    a, a:active, a:visited
+    {
+      text-decoration: none;
+      color: #000;
+    }
+  }
+}

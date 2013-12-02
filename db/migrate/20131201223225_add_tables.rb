@@ -1,5 +1,13 @@
 class AddTables < ActiveRecord::Migration
   def change
+    create_table :games do |t|
+      t.integer :gid
+      t.string :gname
+      t.datetime :greleasedate
+      t.text :ginfo
+      t.string :gpictureurl
+    end
+
     create_table :consoles do |t|
       t.integer :gcid
       t.string :gcname
@@ -42,37 +50,39 @@ class AddTables < ActiveRecord::Migration
 
     create_table :console_games do |t|
       t.integer :gcid
-      t.string :gid
+      t.integer :gid
     end
 
     create_table :game_tracks do |t|
       t.integer :gid
-      t.string :gid
+      t.integer :gid
     end
 
     create_table :game_karts do |t|
       t.integer :gcid
-      t.string :tid
+      t.integer :tid
+      t.integer :wid
     end
 
     create_table :game_characters do |t|
       t.integer :gid
-      t.string :cid
+      t.integer :cid
+      t.integer :wid
     end
 
     create_table :game_items do |t|
       t.integer :gid
-      t.string :iid
+      t.integer :iid
     end
 
     create_table :character_karts do |t|
       t.integer :cid
-      t.string :kid
+      t.integer :kid
     end
 
     create_table :characters_items do |t|
       t.integer :cid
-      t.string :iid
+      t.integer :iid
     end
 
   end
