@@ -10,7 +10,18 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    @game = ActiveRecord::Base.connection.execute("SELECT * FROM games WHERE gid = #{params[:id]} LIMIT 1").first
+    @game = ActiveRecord::Base.connection.execute("
+      SELECT * 
+      FROM games 
+      WHERE gid = #{params[:id]} 
+      LIMIT 1").first
+
+    @characters = ActiveRecord::Base.connection.execute("
+      SELECT c.*
+      FROM characters c
+      JOIN game_characters g 
+      ON g.cid = c.cid
+      WHERE gid = #{params[:id]}")
 
     respond_to do |format|
       format.html
@@ -34,8 +45,12 @@ class GamesController < ApplicationController
 
     respond_to do |format|
       if @game.valid?
-        ActiveRecord::Base.connection.execute("INSERT INTO games (`gname`, `greleasedate`, `ginfo`, `gpictureurl`) 
-          VALUES ('#{null_or_not(params[:game][:gname])}', #{null_or_not(params[:game][:greleasedate])}, '#{null_or_not(params[:game][:ginfo])}', '#{null_or_not(params[:game][:gpictureurl])}');")
+        ActiveRecord::Base.connection.execute("
+          INSERT INTO games (`gname`, `greleasedate`, `ginfo`, `gpictureurl`) 
+          VALUES ('#{null_or_not(params[:game][:gname])}', 
+            #{null_or_not(params[:game][:greleasedate])}, 
+            '#{null_or_not(params[:game][:ginfo])}',
+            '#{null_or_not(params[:game][:gpictureurl])}');")
 
         id = Game.last.id
 

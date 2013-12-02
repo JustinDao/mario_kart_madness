@@ -1,0 +1,23 @@
+%p#notice= notice
+
+%h1
+  = @character[get_field_index(Character, "cname")]
+
+- if @character[get_field_index(Character, "cpictureurl")] != nil
+  .picture
+    = image_tag @character[get_field_index(Character, "cpictureurl")]
+%br
+= @character[get_field_index(Character, "cinfo")]
+%br
+
+- if !@characters.to_a.empty?
+  %h2 
+    Characters
+  - @characters.each do |character|
+    = character[get_field_index(Character, "cname")]
+    %br
+
+%br
+= link_to 'Edit', edit_character_path(@character)
+|
+= link_to 'Back', characters_path

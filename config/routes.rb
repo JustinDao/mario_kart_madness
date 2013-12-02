@@ -5,7 +5,17 @@ MarioKartMadness::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root :to => 'welcome#index'
 
+  resources :consoles
+
   resources :games
+
+  resources :characters
+
+  resources :karts
+
+  resources :tracks
+
+  resources :items
 
 
   # Example of regular route:

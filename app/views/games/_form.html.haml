@@ -10,5 +10,14 @@
   .fields
     = f.label :gname
     = f.text_field :gname
+    %br
+    = f.label :greleasedate
+    = f.date_field :greleasedate
+    %br
+    = f.label :ginfo
+    = f.text_area :ginfo
+    %br
+    = f.label :gpictureurl
+    = f.text_field :gpictureurl
   .actions
     = f.submit
