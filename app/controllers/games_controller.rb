@@ -30,6 +30,21 @@ class GamesController < ApplicationController
       ON i.iid = g.iid
       WHERE gid = #{params[:id]}")
 
+    @tracks = ActiveRecord::Base.connection.execute("
+      SELECT t.*
+      FROM tracks t
+      JOIN game_tracks gt 
+      ON t.tid = gt.tid
+      WHERE gid = #{params[:id]}")
+
+    @console = ActiveRecord::Base.connection.execute("
+      SELECT gc.*
+      FROM consoles gc
+      JOIN console_games cg 
+      ON gc.gcid = cg.gcid
+      WHERE gid = #{params[:id]}
+      LIMIT 1").first
+
     respond_to do |format|
       format.html
       format.json {render json: Game.find(@game[0])}

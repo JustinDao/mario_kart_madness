@@ -7,7 +7,12 @@
   .picture
     = image_tag @game[get_field_index(Game, "gpictureurl")]
 %br
-= @game[get_field_index(Game, "greleasedate")]
+Released on
+- time = @game[get_field_index(Game, "greleasedate")]
+- day = time.day
+= time.strftime("%B #{day.ordinalize}, %Y")
+for
+= link_to @console[get_field_index(Console, "gcname")], console_path(@console[0])
 %br
 = @game[get_field_index(Game, "ginfo")]
 %br
@@ -20,12 +25,20 @@
       %li
         = link_to character[get_field_index(Character, "cname")], character_path(character[0])
 
-- if !@characters.to_a.empty?
+- if !@items.to_a.empty?
   %h2 
     Items
   %ul
     - @items.each do |item|
       %li
         = link_to item[get_field_index(Item, "iname")], item_path(item[0])
+
+- if !@tracks.to_a.empty?
+  %h2 
+    Tracks
+  %ul
+    - @tracks.each do |track|
+      %li
+        = link_to track[get_field_index(Track, "tname")], track_path(track[0])
 
 = link_to 'Back', games_path
