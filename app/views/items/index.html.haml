@@ -4,7 +4,7 @@
     %tr
       %th Name
   %tbody
-    - @items.each do |item|
+    - @items.sort_by{|c| c[get_field_index(Item, "iname")]}.each do |item|
       %tr
         %td= link_to item[get_field_index(Item, "iname")], item_path(item[0])
 %br

@@ -4,7 +4,7 @@
     %tr
       %th Name
   %tbody
-    - @consoles.each do |console|
+    - @consoles.sort_by{|c| c[get_field_index(Console, "gcname")]}.each do |console|
       %tr
         %td= link_to console[get_field_index(Console, "gcname")], console_path(console[0])
 %br

@@ -4,7 +4,7 @@
     %tr
       %th Name
   %tbody
-    - @characters.each do |character|
+    - @characters.sort_by{|c| c[get_field_index(Character, "cname")]}.each do |character|
       %tr
         %td= link_to character[get_field_index(Character, "cname")], character_path(character[0])
 %br

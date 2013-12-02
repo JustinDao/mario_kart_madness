@@ -4,7 +4,7 @@
     %tr
       %th Name
   %tbody
-    - @tracks.each do |track|
+    - @tracks.sort_by{|c| c[get_field_index(Track, "tname")]}.each do |track|
       %tr
         %td= link_to track[get_field_index(Track, "tname")], track_path(track[0])
 %br

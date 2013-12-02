@@ -23,6 +23,13 @@ class GamesController < ApplicationController
       ON g.cid = c.cid
       WHERE gid = #{params[:id]}")
 
+    @items = ActiveRecord::Base.connection.execute("
+      SELECT i.*
+      FROM items i
+      JOIN game_items g 
+      ON i.iid = g.iid
+      WHERE gid = #{params[:id]}")
+
     respond_to do |format|
       format.html
       format.json {render json: Game.find(@game[0])}

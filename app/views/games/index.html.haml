@@ -4,7 +4,7 @@
     %tr
       %th Name
   %tbody
-    - @games.each do |game|
+    - @games.sort_by{|c| c[get_field_index(Game, "gname")]}.each do |game|
       %tr
         %td= link_to game[get_field_index(Game, "gname")], game_path(game[0])
 %br

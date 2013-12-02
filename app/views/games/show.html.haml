@@ -20,4 +20,12 @@
       %li
         = link_to character[get_field_index(Character, "cname")], character_path(character[0])
 
+- if !@characters.to_a.empty?
+  %h2 
+    Items
+  %ul
+    - @items.each do |item|
+      %li
+        = link_to item[get_field_index(Item, "iname")], item_path(item[0])
+
 = link_to 'Back', games_path
