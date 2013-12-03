@@ -1,5 +1,6 @@
 .header
   - if current_user == nil
+    .anonymous
     .login
       = link_to "Log In", login_path
     .signup

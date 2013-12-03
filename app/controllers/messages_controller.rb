@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
       JOIN users u
       ON u.username = um.username
       ORDER BY m.`mid` DESC
-      LIMIT 20").to_a
+      LIMIT 20").to_a.reverse
 
     messages.each do |message|
       results.push(message)
@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
   end
 
   def add
-    text = params[:text]
+    text = params[:message][:text]
 
     id = Message.last ? Message.last.id + 1 : 1
 

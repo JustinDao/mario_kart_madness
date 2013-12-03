@@ -74,17 +74,30 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  $(".message_submit").bind("click", function(){
-    var value = $("#text").val();
-    if (value == ""){
-      return;
+  $(".message_submit").bind("click", addMessage);
+  
+  $("#text").bind("keypress", function(e) {
+    if (e.keyCode == 13) {
+      addMessage();
     }
-    $.ajax({
-      url: '/messages/'+value,
-      type: 'POST',
-      success: function(){
-        $("#text").val("");
-      }
-    });
   });
 });
+
+function addMessage(){
+  var value = $("#text").val();
+  if (value == ""){
+    return;
+  }
+  $.ajax({
+    url: '/messages/add',
+    data: { 
+      message: { 
+        text: value 
+      } 
+    },
+    type: 'POST',
+    success: function(){
+      $("#text").val("");
+    }
+  });
+};

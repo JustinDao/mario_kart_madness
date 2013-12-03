@@ -103,9 +103,20 @@ ul
   padding-right: 0.15em;
 }
 
+.anonymous:before
+{
+  float: left;
+  font-weight: normal;
+  content: "Not logged in";
+  color: #555555;
+    font-size: 0.75em;
+    font-weight: normal;
+}
+
 .logout, .login, .signup
 {
   float: right;
+  display: inline;
 }
 
 .signup:after
