@@ -4,6 +4,7 @@
   - if current_user
     .text
       = text_field_tag :text
+    .letter-count 140
     .submit
       = button_tag "Post", :class => "message_submit"
   - else

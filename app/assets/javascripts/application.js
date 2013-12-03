@@ -76,10 +76,26 @@ $(document).ready(function() {
 $(document).ready(function() {
   $(".message_submit").bind("click", addMessage);
   
-  $("#text").bind("keypress", function(e) {
+  $("#text").bind("keydown", function(e) {
     if (e.keyCode == 13) {
       addMessage();
     }
+    var value = $("#text").val();
+    var length = value.length
+    var leftover = 140 - length
+
+    $(".letter-count").empty();
+
+    $(".letter-count").append(leftover);
+
+    if (leftover < 0){
+      $(".letter-count").addClass("warning");
+    }
+    else{
+      $(".letter-count").removeClass("warning");
+    }
+
+
   });
 });
 
@@ -98,6 +114,8 @@ function addMessage(){
     type: 'POST',
     success: function(){
       $("#text").val("");
+      $(".letter-count").empty();
+      $(".letter-count").append(140)
     }
   });
 };
