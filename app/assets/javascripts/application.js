@@ -35,12 +35,13 @@ $(document).ready(function() {
         $(".search-results").empty();
         data = data.sort(Comparator);
         $.each(data, function(){
-          $('.search-results').append($("<a/>", {
+          $('.search-results').append($("<div>", {
+            class: "search-result"
+          }).append($("<a/>", {
             href: this[1],
-            text: this[0]
-          }));
-          $('.search-results').append($("<br/>", {           
-          }));
+            text: this[0],
+            class: "search-result-link"
+          })));
         });     
       }
     });

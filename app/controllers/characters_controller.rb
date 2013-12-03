@@ -17,10 +17,12 @@ class CharactersController < ApplicationController
       LIMIT 1").first
 
     @games = ActiveRecord::Base.connection.execute("
-      SELECT g.*
+      SELECT g.*, w.wname
       FROM games g
       JOIN game_characters gc
       ON g.gid = gc.gid
+      JOIN weight w
+      ON w.wid = gc.wid
       WHERE cid = #{params[:id]}")
 
     respond_to do |format|

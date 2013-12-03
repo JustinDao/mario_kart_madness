@@ -17,10 +17,12 @@ class KartsController < ApplicationController
       LIMIT 1").first
 
     @games = ActiveRecord::Base.connection.execute("
-      SELECT g.*
+      SELECT g.*, w.wname
       FROM games g
       JOIN game_karts gk
       ON g.gid = gk.gid
+      JOIN weight w
+      ON w.wid = gk.wid
       WHERE kid = #{params[:id]}")
 
     respond_to do |format|

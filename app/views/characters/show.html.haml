@@ -13,6 +13,6 @@
   %ul        
     - @games.each do |game|
       %li
-        = link_to game[get_field_index(Game, "gname")], game_path(game[0])
+        = raw "#{link_to game[get_field_index(Game, "gname")], game_path(game[0])} - #{game.last}"
 
 = link_to 'Back', characters_path
