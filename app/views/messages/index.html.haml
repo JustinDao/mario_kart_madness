@@ -1,0 +1,11 @@
+%table.messages{:style => "font-size: 10px;"}
+  
+
+
+- if current_user
+  .text
+    = text_field_tag :text
+  .submit
+    = button_tag "Post", :class => "message_submit"
+- else
+  = link_to "Login to Post!", login_path

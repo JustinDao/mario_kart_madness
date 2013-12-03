@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203020545) do
+ActiveRecord::Schema.define(version: 20131203045112) do
 
   create_table "character_karts", force: true do |t|
     t.integer "cid"
@@ -86,11 +86,21 @@ ActiveRecord::Schema.define(version: 20131203020545) do
     t.string  "kpictureurl"
   end
 
+  create_table "messages", force: true do |t|
+    t.integer "mid"
+    t.string  "text", limit: 140
+  end
+
   create_table "tracks", force: true do |t|
     t.integer "tid"
     t.string  "tname"
     t.string  "tinfo"
     t.string  "tpictureurl"
+  end
+
+  create_table "user_messages", force: true do |t|
+    t.string  "username"
+    t.integer "mid"
   end
 
   create_table "users", force: true do |t|

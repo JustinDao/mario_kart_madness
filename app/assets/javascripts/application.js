@@ -21,7 +21,6 @@ function Comparator(a,b){
   return 0;
 }
 
-
 $(document).ready(function() {
   $("#query").bind("keyup", function(){
     var value = $(this).val();
@@ -43,6 +42,48 @@ $(document).ready(function() {
           $('.search-results').append($("<br/>", {           
           }));
         });     
+      }
+    });
+  });
+});
+
+$(document).ready(function() {
+  if ($(".messages").length > 0){
+    setInterval(function(){
+      $.ajax({
+        url: '/messages/get/',
+        dataType: 'json',
+        type: 'GET',
+        success: function(data) {
+          $(".messages").empty();
+          $.each(data, function(){
+            $('.messages').append($("<tr>",{
+              class: "post"
+            }).append($("<td/>", {
+              text: this[0] + ":",
+              class: "poster"
+            })).append($("<td/>", {
+              text: this[1],
+              class: "message"
+            })));
+          });     
+        }
+      });
+    }, 250);
+  }
+});
+
+$(document).ready(function() {
+  $(".message_submit").bind("click", function(){
+    var value = $("#text").val();
+    if (value == ""){
+      return;
+    }
+    $.ajax({
+      url: '/messages/'+value,
+      type: 'POST',
+      success: function(){
+        $("#text").val("");
       }
     });
   });
