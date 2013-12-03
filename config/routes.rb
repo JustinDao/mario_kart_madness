@@ -3,7 +3,7 @@ MarioKartMadness::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root :to => 'welcome#index'
+  root :to => 'search#search'
 
   resources :consoles, :only => [:index, :show]
 
@@ -16,8 +16,6 @@ MarioKartMadness::Application.routes.draw do
   resources :tracks, :only => [:index, :show]
 
   resources :items, :only => [:index, :show]
-
-  get '/search', :to => "search#search", :as => "search"
 
   get '/search/:query', :to => "search#find"
 

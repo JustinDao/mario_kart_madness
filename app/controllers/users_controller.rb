@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def create
     check = user_params
 
-    username = params[:user][:username]
+    username = params[:user][:username].downcase
     password = params[:user][:password]
     password_confirmation = params[:user][:password_confirmation]
 

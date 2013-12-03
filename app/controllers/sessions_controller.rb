@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = ActiveRecord::Base.connection.execute("
       SELECT * 
       FROM users 
-      WHERE username = '#{params[:session][:username]}'
+      WHERE username = '#{params[:session][:username].downcase}'
       AND password = '#{password}'
       LIMIT 1").to_a.first
 
