@@ -57,16 +57,41 @@ $(document).ready(function() {
         success: function(data) {
           $(".messages").empty();
           $.each(data, function(){
-            $('.messages').append($("<tr>",{
-              class: "post"
-            }).append($("<td/>", {
-              text: this[0] + ":",
-              class: "poster"
-            })).append($("<td/>", {
-              text: this[1],
-              class: "message"
-            })));
-          });     
+            if ($(".admin").length > 0) {
+              $('.messages').append($("<tr/>",{
+                class: "post"
+              }).append($("<td/>", {
+                text: this[0],
+                class: "poster"
+              })).append($("<td/>", {
+                text: this[1],
+                class: "message"
+              })).append($("<td/>",{class: "delete-post"}).append($("<div/>", {
+                text: "X",
+                class: "delete-post-"+this[2]
+              }))));
+
+              var mid = this[2];
+
+              $(".delete-post-"+mid).bind("click", function() {
+                $.ajax({
+                  url: '/messages/'+mid,
+                  type: 'DELETE'
+                });
+              });
+            }
+            else {
+              $('.messages').append($("<tr/>",{
+                class: "post"
+              }).append($("<td/>", {
+                text: this[0] + ":",
+                class: "poster"
+              })).append($("<td/>", {
+                text: this[1],
+                class: "message"
+              })));
+            }
+          });  
         }
       });
     }, 250);
@@ -78,6 +103,7 @@ $(document).ready(function() {
   
   $("#text").bind("keydown", function(e) {
     updateLetterCount(e);
+    enterSend(e);
   });
   $("#text").bind("keyup", function(e){
     updateLetterCount(e);
@@ -85,26 +111,27 @@ $(document).ready(function() {
 });
 
 function updateLetterCount(e) {
-    if (e.keyCode == 13) {
-      addMessage();
-    }
     var value = $("#text").val();
-    var length = value.length
-    var leftover = 140 - length
+  var length = value.length
+  var leftover = 140 - length
 
-    $(".letter-count").empty();
+  $(".letter-count").empty();
 
-    $(".letter-count").append(leftover);
+  $(".letter-count").append(leftover);
 
-    if (leftover < 0){
-      $(".letter-count").addClass("warning");
-    }
-    else{
-      $(".letter-count").removeClass("warning");
-    }
-
-
+  if (leftover < 0){
+    $(".letter-count").addClass("warning");
   }
+  else{
+    $(".letter-count").removeClass("warning");
+  }
+}
+
+function enterSend(e) {
+  if (e.keyCode == 13) {
+    addMessage();
+  }
+}
 
 function addMessage(){
   var value = $("#text").val();

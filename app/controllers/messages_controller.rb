@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     results = []
 
     messages = ActiveRecord::Base.connection.execute("
-      SELECT um.`username`, m.`text` 
+      SELECT um.`username`, m.`text`, m.`mid` 
       FROM messages m
       JOIN user_messages um
       ON m.mid = um.mid
@@ -40,6 +40,19 @@ class MessagesController < ApplicationController
       INSERT INTO user_messages (`username`, `mid`) 
       VALUES ('#{null_or_not(username)}',
         '#{null_or_not(id)}')")
+
+    render :nothing => true
+  end
+
+  def delete
+    mid = params[:id]
+
+    if current_user.admin == true
+      ActiveRecord::Base.connection.execute("
+        DELETE FROM messages 
+        WHERE `mid` = #{null_or_not(mid)}
+        LIMIT 1")
+    end
 
     render :nothing => true
   end

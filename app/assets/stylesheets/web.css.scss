@@ -88,10 +88,21 @@ ul
   list-style-type: circle;
 }
 
-.username
+.username, .admin
 {
   float: left;
   font-weight: bold;
+}
+
+.admin:before
+{
+  content: "(";
+  padding-left: .15em;
+}
+
+.admin:after
+{
+  content: ")";
 }
 
 .username:before
@@ -130,15 +141,84 @@ ul
 }
 
 .header:before,
-.header:after {
+.header:after,
+.user-info:before,
+.user-info:after {
     content: " ";
     display: table;
 }
 
-.header:after {
+.header:after,
+.user-info:after {
     clear: both;
 }
 
+.messages
+{
+  font-size: 0.8em;
+  border: 1px solid rgba(0,0,0,.1);
+  border-spacing: 0px;
+  line-height: 1.2;
+}
+
+.message, .poster, .delete-post
+{
+  padding: .5em;
+}
+
+.message
+{
+  word-break: break-word;
+  width: 100%;
+}
+
+.post:nth-child(even) {
+    background-color: rgba(0,0,0,.1);
+}
+
+.poster
+{
+  vertical-align: top;
+  font-weight: bold;
+  text-align: right;
+}
+
+.bulletin
+{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#text
+{
+  width: 100%;
+}
+
+.letter-count
+{
+  font-size: 0.75em;
+  color: #555555;
+  font-weight: bold;
+}
+
 .warning{
-  color: #FF0000;
+  color: #EE5555;
+}
+
+.letter-count:after
+{
+  font-weight: normal;
+  content: " characters remaining";
+}
+
+.letter-count, .submit
+{
+  text-align: right;
+}
+
+.delete-post
+{
+  cursor: pointer;
+  vertical-align: top;
 }

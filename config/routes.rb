@@ -29,6 +29,7 @@ MarioKartMadness::Application.routes.draw do
   get '/bulletin/', to: 'messages#index', :as => "bulletin"
   get '/messages/get', to: 'messages#get'
   post '/messages/add', to: 'messages#add'
+  delete '/messages/:id', to: 'messages#delete'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

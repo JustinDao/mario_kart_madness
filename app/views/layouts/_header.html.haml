@@ -1,15 +1,19 @@
 .header
-  - if current_user == nil
-    .anonymous
-    .login
-      = link_to "Log In", login_path
-    .signup
-      = link_to "Sign Up", sign_up_path
-  - else
-    .username
-      = current_user.username
-    .logout
-      = link_to "Log Out", logout_path, :method => :delete
+  .user-info
+    - if current_user == nil
+      .anonymous
+      .login
+        = link_to "Log In", login_path
+      .signup
+        = link_to "Sign Up", sign_up_path
+    - else
+      .username
+        = current_user.username
+      - if current_user.admin == true
+        .admin
+          Admin
+      .logout
+        = link_to "Log Out", logout_path, :method => :delete
   %a.logo{:href => root_path}
     %img{:src => "/logo.png"}
   %ul.menu
