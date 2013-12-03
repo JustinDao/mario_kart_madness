@@ -52,6 +52,11 @@ class MessagesController < ApplicationController
         DELETE FROM messages 
         WHERE `mid` = #{null_or_not(mid)}
         LIMIT 1")
+
+      ActiveRecord::Base.connection.execute("
+        DELETE FROM user_messages 
+        WHERE `mid` = #{null_or_not(mid)}
+        LIMIT 1")
     end
 
     render :nothing => true
