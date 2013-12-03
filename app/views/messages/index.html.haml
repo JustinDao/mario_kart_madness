@@ -9,4 +9,5 @@
     .submit
       = button_tag "Post", :class => "message_submit"
   - else
-    = link_to "Login to Post!", login_path
+    .login-post
+      = link_to "Login to Post!", login_path
