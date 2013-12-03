@@ -1,8 +1,5 @@
 %h1 Consoles
 %table
-  %thead
-    %tr
-      %th Name
   %tbody
     - @consoles.sort_by{|c| c[get_field_index(Console, "gcname")]}.each do |console|
       %tr

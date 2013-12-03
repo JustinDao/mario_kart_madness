@@ -1,8 +1,5 @@
 %h1 Items
 %table
-  %thead
-    %tr
-      %th Name
   %tbody
     - @items.sort_by{|c| c[get_field_index(Item, "iname")]}.each do |item|
       %tr

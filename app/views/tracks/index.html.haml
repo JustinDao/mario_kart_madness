@@ -1,8 +1,5 @@
 %h1 Tracks
 %table
-  %thead
-    %tr
-      %th Name
   %tbody
     - @tracks.sort_by{|c| c[get_field_index(Track, "tname")]}.each do |track|
       %tr

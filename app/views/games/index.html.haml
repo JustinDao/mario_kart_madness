@@ -1,8 +1,5 @@
 %h1 Games
 %table
-  %thead
-    %tr
-      %th Name
   %tbody
     - @games.sort_by{|c| c[get_field_index(Game, "gname")]}.each do |game|
       %tr
