@@ -77,6 +77,14 @@ $(document).ready(function() {
   $(".message_submit").bind("click", addMessage);
   
   $("#text").bind("keydown", function(e) {
+    updateLetterCount(e);
+  });
+  $("#text").bind("keyup", function(e){
+    updateLetterCount(e);
+  });
+});
+
+function updateLetterCount(e) {
     if (e.keyCode == 13) {
       addMessage();
     }
@@ -96,8 +104,7 @@ $(document).ready(function() {
     }
 
 
-  });
-});
+  }
 
 function addMessage(){
   var value = $("#text").val();
