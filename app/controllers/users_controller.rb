@@ -96,6 +96,36 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin
+    if current_user.admin != true
+      redirect_to root_path
+    end
+  end
+
+  def all_data
+    if current_user.admin != true
+      redirect_to root_path
+      return
+    end
+
+    results = []
+
+    tables = ActiveRecord::Base.connection.execute("
+      SHOW TABLES;")
+
+    tables.each do |table|
+      arr = ActiveRecord::Base.connection.execute("
+        SELECT * 
+        FROM #{table[0]}")
+
+      results.push(arr)
+    end   
+
+    respond_to do |format|
+      format.json { send_data results.to_json }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

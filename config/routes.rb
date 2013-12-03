@@ -19,6 +19,10 @@ MarioKartMadness::Application.routes.draw do
 
   get '/search/:query', :to => "search#find"
 
+  get '/users/admin', :to => "users#admin", :as => "admin"
+
+  get '/users/all_data', :to => "users#all_data", :as => "all_data"
+
   post '/users/', :to => "users#create", :as => "create_user"
 
   get '/signup',  to: 'users#new', :as => "sign_up"
