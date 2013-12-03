@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(version: 20131203045112) do
   end
 
   create_table "game_karts", force: true do |t|
-    t.integer "gcid"
-    t.integer "tid"
+    t.integer "gid"
+    t.integer "kid"
     t.integer "wid"
   end
 

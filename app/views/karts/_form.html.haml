@@ -1,0 +1,20 @@
+= form_for(@kart) do |f|
+  - if @kart.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@kart.errors.count, "error")
+        prohibited this kart from being saved:
+      %ul
+        - @kart.errors.full_messages.each do |msg|
+          %li= msg
+  .fields
+    = f.label :kname
+    = f.text_field :kname
+    %br
+    = f.label :kinfo
+    = f.text_area :kinfo
+    %br
+    = f.label :kpictureurl
+    = f.text_field :kpictureurl
+  .actions
+    = f.submit

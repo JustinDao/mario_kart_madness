@@ -1,0 +1,11 @@
+%h1 Karts
+%table
+  %thead
+    %tr
+      %th Name
+  %tbody
+    - @karts.sort_by{|c| c[get_field_index(Kart, "kname")]}.each do |kart|
+      %tr
+        %td= link_to kart[get_field_index(Kart, "kname")], kart_path(kart[0])
+%br
+  = link_to "Back", root_path

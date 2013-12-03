@@ -37,6 +37,13 @@ class GamesController < ApplicationController
       ON t.tid = gt.tid
       WHERE gid = #{params[:id]}")
 
+    @karts = ActiveRecord::Base.connection.execute("
+      SELECT k.*
+      FROM karts k
+      JOIN game_karts gk 
+      ON k.kid = gk.kid
+      WHERE gid = #{params[:id]}")
+
     @console = ActiveRecord::Base.connection.execute("
       SELECT gc.*
       FROM consoles gc

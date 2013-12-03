@@ -39,4 +39,12 @@ for
       %li
         = link_to track[get_field_index(Track, "tname")], track_path(track[0])
 
+- if !@karts.to_a.empty?
+  %h2 
+    Karts
+  %ul
+    - @karts.each do |kart|
+      %li
+        = link_to kart[get_field_index(Kart, "kname")], kart_path(kart[0])
+
 = link_to 'Back', games_path
