@@ -17,7 +17,6 @@
 
 $(document).ready(function() {
   $("#query").bind("keyup", function(){
-    $(".search-results").empty();
     var value = $(this).val();
     if (value == ""){
       return;
@@ -27,6 +26,7 @@ $(document).ready(function() {
       dataType: 'json',
       type: 'GET',
       success: function(data) {
+        $(".search-results").empty();
         $.each(data, function(){
           $('.search-results').append($("<a/>", {
             href: this[1],
@@ -38,15 +38,4 @@ $(document).ready(function() {
       }
     });
   });
-});
-
-jQuery.ajaxSetup({
-  beforeSend: function() {
-    $('#loading').fadeIn();
-
-  },
-  complete: function(){
-    $('#loading').hide();
-  },
-  success: function() {}
 });
