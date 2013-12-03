@@ -15,6 +15,13 @@
 // require turbolinks
 //= require_tree .
 
+function Comparator(a,b){
+  if (a[0].toUpperCase() < b[0].toUpperCase()) return -1;
+  if (a[0].toUpperCase() > b[0].toUpperCase()) return 1;
+  return 0;
+}
+
+
 $(document).ready(function() {
   $("#query").bind("keyup", function(){
     var value = $(this).val();
@@ -27,6 +34,7 @@ $(document).ready(function() {
       type: 'GET',
       success: function(data) {
         $(".search-results").empty();
+        data = data.sort(Comparator);
         $.each(data, function(){
           $('.search-results').append($("<a/>", {
             href: this[1],
