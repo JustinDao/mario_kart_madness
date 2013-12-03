@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = ActiveRecord::Base.connection.execute("
       SELECT * 
       FROM users 
-      WHERE username = '#{params[:username]}' 
+      WHERE username = '#{params[:username].downcase}' 
       LIMIT 1").first
 
     respond_to do |format|
