@@ -21,6 +21,13 @@ MarioKartMadness::Application.routes.draw do
 
   get '/search/:query', :to => "search#find"
 
+  post '/users/', :to => "users#create", :as => "create_user"
+
+  get '/signup',  to: 'users#new', :as => "sign_up"
+  get '/login',  to: 'sessions#new', :as => "login"
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy', :as => "logout"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131201223225) do
+ActiveRecord::Schema.define(version: 20131203020545) do
 
   create_table "character_karts", force: true do |t|
     t.integer "cid"
@@ -91,6 +91,12 @@ ActiveRecord::Schema.define(version: 20131201223225) do
     t.string  "tname"
     t.string  "tinfo"
     t.string  "tpictureurl"
+  end
+
+  create_table "users", force: true do |t|
+    t.string  "username"
+    t.string  "password"
+    t.boolean "admin",    default: false
   end
 
   create_table "weight", force: true do |t|
