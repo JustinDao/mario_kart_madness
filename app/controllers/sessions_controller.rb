@@ -3,12 +3,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    password = Digest::MD5.hexdigest(params[:session][:password])
+    password = Digest::MD5.hexdigest(params[:session][:password].gsub("'", %q(\\\')))
+    username = params[:session][:username].downcase.gsub("'", %q(\\\'))
 
     user = ActiveRecord::Base.connection.execute("
       SELECT * 
       FROM users 
-      WHERE username = '#{params[:session][:username].downcase}'
+      WHERE username = '#{username}'
       AND password = '#{password}'
       LIMIT 1").to_a.first
 

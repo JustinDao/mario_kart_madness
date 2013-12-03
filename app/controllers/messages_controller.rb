@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
   end
 
   def add
-    text = params[:message][:text]
+    text = params[:message][:text].gsub("'", %q(\\\'))
 
     id = Message.last ? Message.last.id + 1 : 1
 

@@ -36,9 +36,9 @@ class UsersController < ApplicationController
   def create
     check = user_params
 
-    username = params[:user][:username].downcase
-    password = params[:user][:password]
-    password_confirmation = params[:user][:password_confirmation]
+    username = params[:user][:username].downcase.gsub("'", %q(\\\'))
+    password = params[:user][:password].gsub("'", %q(\\\'))
+    password_confirmation = params[:user][:password_confirmation].gsub("'", %q(\\\'))
 
     @user = User.new(:username => username, :password => password)
 
